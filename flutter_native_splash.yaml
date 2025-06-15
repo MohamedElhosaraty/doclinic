@@ -1,0 +1,9 @@
+flutter_native_splash:
+  # ios & Android blow 12
+  color: "#ffffff"
+  image: assets/images/splash.png
+  android_12:
+    # 640 && 960 to make image
+    # write in terminal dart run flutter_native_splash:create --path=flutter_native_splash.yaml
+    color: "#ffffff"
+    image: assets/images/splash_android.png
