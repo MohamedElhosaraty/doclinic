@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../feature/auth/presentation/page/login_screen.dart';
 import '../../feature/home/domain/entities/home_entity.dart';
 import '../../feature/home/presentation/cubit/search_cubit/search_cubit.dart';
+import '../../feature/home/presentation/pages/book_appointment_screen.dart';
+import '../../feature/home/presentation/pages/details_doctor_screen.dart';
 import '../../feature/home/presentation/pages/doctor_speciality_screen.dart';
 import '../../feature/home/presentation/pages/recommendation_doctor_screen.dart';
 import '../../feature/onboarding/pages/onboarding_screen.dart';
@@ -24,26 +26,40 @@ class AppRouter {
       case Routes.signUpScreen:
         return MaterialPageRoute(builder: (_) => const SignupScreen());
 
-
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
 
-
       case Routes.doctorSpecialityScreen:
-        return MaterialPageRoute(builder: (_) =>
-            DoctorSpecialityScreen(
-              homeEntity: settings.arguments as HomeEntity,
-            ));
-
+        return MaterialPageRoute(
+          builder:
+              (_) => DoctorSpecialityScreen(
+                homeEntity: settings.arguments as HomeEntity,
+              ),
+        );
 
       case Routes.recommendationDoctorScreen:
-        return MaterialPageRoute(builder: (_) =>
-            BlocProvider(
-              create: (context) => getIt<SearchCubit>(),
-              child: RecommendationDoctorScreen(
-                doctorList: settings.arguments as List<DoctorListEntity>,
+        final args = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create: (context) => getIt<SearchCubit>(),
+                child: RecommendationDoctorScreen(
+                  cityEntity: args['cityEntity'] as List<Map<String, dynamic>>,
+                  doctorList: args['doctorList'] as List<DoctorListEntity>,
+                ),
               ),
-            ));
+        );
+
+      case Routes.detailsDoctorScreen:
+        return MaterialPageRoute(
+          builder:
+              (_) => DetailsDoctorScreen(
+                doctorListEntity: settings.arguments as DoctorListEntity,
+              ),
+        );
+
+      case Routes.bookAppointmentScreen:
+        return MaterialPageRoute(builder: (_) => const BookAppointmentScreen());
     }
     return null;
   }

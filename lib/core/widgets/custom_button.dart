@@ -39,7 +39,7 @@ class CustomButton extends StatelessWidget {
           padding: EdgeInsets.symmetric(
             horizontal:
                 xPadding != null ? xPadding!.w : 8,
-            vertical: yPadding != null ? yPadding!.h : 8,
+            vertical: yPadding != null ? yPadding!.h : 12,
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16.r),
@@ -64,7 +64,7 @@ class CustomButton extends StatelessWidget {
                 : Text(
                     text != null ? text! : "",
                     style: textStyle ??
-                        AppTextStyles.poppins18Medium(context).copyWith(
+                        AppTextStyles.font18Medium(context).copyWith(
                           color: AppColors.background,
                         ),
                   )),

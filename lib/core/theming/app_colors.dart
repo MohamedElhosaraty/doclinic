@@ -5,6 +5,8 @@ class AppColors {
   static const Color primaryColor = Color(0xFF247CFF);
   static const Color block = Color(0xFF242424);
   static const Color grey = Color(0xFF757575);
+  static const Color grey300 = Color(0xFFE0E0E0);
+  static const Color moreGrey = Color(0xFF6F6F6F);
   static const Color dartBlue = Color(0xFF242424);
   static const Color neutral = Color(0xFFF5F5F5);
   static const Color lightBlue = Color(0xFFF4F8FF);
@@ -12,6 +14,8 @@ class AppColors {
   static const Color lighterGrey = Color(0xFFEDEDED);
   static const Color moreLightGrey = Color(0xFFFDFDFF);
   static const Color moreLighterGrey = Color(0xFFF5F5F5);
+  static const Color light = Color(0xFFF2F4F7);
+  static const Color fillGreen = Color(0xFF22C55E);
 
 
   static const Color lightBlue700 = Color(0xFFB2CCFF);
