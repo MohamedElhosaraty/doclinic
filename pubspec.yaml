@@ -50,6 +50,8 @@ dependencies:
   cached_network_image: ^3.4.1
   equatable: ^2.0.7
   im_stepper: ^1.0.1+1
+  date_picker_timeline: ^1.2.7
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:

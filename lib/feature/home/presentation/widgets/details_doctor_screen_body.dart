@@ -58,7 +58,7 @@ class DetailsDoctorScreenBody extends StatelessWidget {
           25.verticalSpace,
           CustomButton(
               text: "Make An Appointment", onPressed: (){
-                context.pushNamed(Routes.bookAppointmentScreen);
+                context.pushNamed(Routes.bookAppointmentScreen ,arguments: doctorList);
           }),
 
         ],
