@@ -59,7 +59,9 @@ class AppRouter {
         );
 
       case Routes.bookAppointmentScreen:
-        return MaterialPageRoute(builder: (_) => const BookAppointmentScreen());
+        return MaterialPageRoute(builder: (_) =>  BookAppointmentScreen(
+          doctorList: settings.arguments as DoctorListEntity,
+        ));
     }
     return null;
   }
