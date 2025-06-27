@@ -21,7 +21,7 @@ class DoctorLogoAndName extends StatelessWidget {
         ),
         Text(
           "Docdoc",style: AppTextStyles.font24Bold(context).copyWith(
-          color: AppColors.block
+          color: AppColors.dartBlue
         ),
         )
       ],

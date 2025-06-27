@@ -15,9 +15,9 @@ class DataAndTime extends StatefulWidget {
   });
 
   final ValueChanged<DateTime> onDateSelected;
-  final ValueChanged<int> onTimeSelected;
+  final ValueChanged<String> onTimeSelected;
   final DateTime selectedDate;
-  final int? selectedTimeIndex;
+  final String? selectedTimeIndex;
 
   @override
   State<DataAndTime> createState() => _DataAndTimeState();
@@ -142,11 +142,11 @@ class _DataAndTimeState extends State<DataAndTime> with AutomaticKeepAliveClient
           spacing: 12,
           runSpacing: 14,
           children: List.generate(times.length, (index) {
-            final isSelected = widget.selectedTimeIndex == index;
+            final isSelected = widget.selectedTimeIndex == times[index];
 
             return GestureDetector(
               onTap: () {
-                widget.onTimeSelected(index);
+                widget.onTimeSelected(times[index]);
               },
               child: Container(
                 width: MediaQuery.of(context).size.width * .42,

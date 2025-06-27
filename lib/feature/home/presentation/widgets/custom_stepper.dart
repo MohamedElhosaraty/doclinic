@@ -23,7 +23,7 @@ class CustomStepper extends StatefulWidget {
 class _CustomStepperState extends State<CustomStepper> {
   int currentStep = 1;
   DateTime _selectedDate = DateTime.now();
-  int? _selectedTime;
+  String? _selectedTime;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class _CustomStepperState extends State<CustomStepper> {
           onDateSelected: (DateTime value) {
             setState(() => _selectedDate = value);
           },
-          onTimeSelected: (int value) {
+          onTimeSelected: (String value) {
             setState(() => _selectedTime = value);
           },
         ),
@@ -52,7 +52,11 @@ class _CustomStepperState extends State<CustomStepper> {
       StepData(
         number: 3,
         label: 'Summary',
-        content: CustomStepThreeContent(),
+        content: CustomStepThreeContent(
+          doctorList: widget.doctorList,
+          selectedDate: _selectedDate,
+          selectedTime: _selectedTime,
+        ),
       ),
     ];
 

@@ -42,7 +42,7 @@ class CustomAppBar extends StatelessWidget {
             title,
             style: AppTextStyles.font18SemiBold(
               context,
-            ).copyWith(color: AppColors.block),
+            ).copyWith(color: AppColors.dartBlue),
           ),
         ),
         isActionButton ? Container(

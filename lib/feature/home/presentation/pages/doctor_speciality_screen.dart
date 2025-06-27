@@ -48,7 +48,7 @@ class DoctorSpecialityScreen extends StatelessWidget {
                         Text(
                           homeEntity.specializationList[index].nameSpecialization,
                           style: AppTextStyles.font12Regular(context).copyWith(
-                              color: AppColors.block)
+                              color: AppColors.dartBlue)
                         )
                       ],
                     );
