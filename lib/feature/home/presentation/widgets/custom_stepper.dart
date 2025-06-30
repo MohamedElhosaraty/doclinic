@@ -1,11 +1,17 @@
+import 'package:doclinic/core/helpers/extensions.dart';
 import 'package:doclinic/feature/home/presentation/widgets/total_price.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
+import '../../../../core/helpers/toast_helper.dart';
+import '../../../../core/routing/routes.dart';
 import '../../../../core/utils/enum_state.dart';
 import '../../../../core/utils/step_data.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../domain/entities/home_entity.dart';
+import '../cubit/appointment_cubit/appointment_cubit.dart';
 import 'custom_step_item.dart';
 import 'custom_step_line.dart';
 import 'custom_step_three_content.dart';
@@ -27,7 +33,6 @@ class _CustomStepperState extends State<CustomStepper> {
 
   @override
   Widget build(BuildContext context) {
-
     // to save the state
     final List<StepData> steps = [
       StepData(
@@ -121,12 +126,42 @@ class _CustomStepperState extends State<CustomStepper> {
           yPadding: 15.sp,
           text: "Continue",
         )
-            : CustomButton(
-          onPressed: () {
-            // تنفيذ الحجز هنا
+            : BlocConsumer<AppointmentCubit, AppointmentState>(
+          listener: (context, state) {
+            if (state is AppointmentSuccess) {
+              ToastHelper().showSuccessToast(context, "'Appointment Booked Successfully'");
+              context.pushReplacementNamed(Routes.bookDetailsScreen,arguments:{
+                "selectedDate": _selectedDate,
+                "doctorList": widget.doctorList,
+                "selectedTime": _selectedTime
+              });
+            }else if (state is AppointmentError) {
+              ToastHelper().showErrorToast(context, state.error.toString());
+            }
           },
-          yPadding: 15.sp,
-          text: "Book Now",
+          builder: (context, state) {
+           return  state is AppointmentLoading ? CustomButton(
+             isLoading: true,
+              onPressed: () {
+
+              },
+              yPadding: 15.sp,
+              text: "Book Now",
+            ) :  CustomButton(
+              onPressed: () {
+                DateTime date = DateTime.parse(_selectedDate.toString());
+
+                String formatted = DateFormat('EEEE, dd MMMM yyyy').format(date);
+                String time = "$formatted ${_selectedTime!}";
+                context.read<AppointmentCubit>().bookAppointment(
+                   widget.doctorList.doctorId.toString(),
+                    time,
+                );
+              },
+              yPadding: 15.sp,
+              text: "Book Now",
+            ) ;
+          },
         ),
       ],
     );

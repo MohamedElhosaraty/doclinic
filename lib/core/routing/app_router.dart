@@ -8,6 +8,7 @@ import '../../feature/auth/presentation/page/login_screen.dart';
 import '../../feature/home/domain/entities/home_entity.dart';
 import '../../feature/home/presentation/cubit/search_cubit/search_cubit.dart';
 import '../../feature/home/presentation/pages/book_appointment_screen.dart';
+import '../../feature/home/presentation/pages/book_details_screen.dart';
 import '../../feature/home/presentation/pages/details_doctor_screen.dart';
 import '../../feature/home/presentation/pages/doctor_speciality_screen.dart';
 import '../../feature/home/presentation/pages/recommendation_doctor_screen.dart';
@@ -62,6 +63,21 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) =>  BookAppointmentScreen(
           doctorList: settings.arguments as DoctorListEntity,
         ));
+
+      case Routes.bookDetailsScreen:
+        final args = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+            create: (context) => getIt<SearchCubit>(),
+            child: BookDetailsScreen(
+              doctorList: args['doctorList'] as DoctorListEntity,
+              selectedDate: args['selectedDate'] as DateTime,
+              selectedTime: args['selectedTime'] as String,
+            ),
+          ),
+        );
+
     }
     return null;
   }

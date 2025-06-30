@@ -13,5 +13,6 @@ class Assets {
   static const String svgsNotification = 'assets/svgs/notification.svg';
   static const String svgsSearchIcon = 'assets/svgs/search_icon.svg';
   static const String svgsSort = 'assets/svgs/sort.svg';
+  static const String svgsTrue = 'assets/svgs/true.svg';
 
 }

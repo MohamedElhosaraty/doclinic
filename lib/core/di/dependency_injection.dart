@@ -126,7 +126,7 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt<LoginUsecase>()));
   getIt.registerFactory<SignUpCubit>(() => SignUpCubit(getIt<SignUpUsecase>()));
 
-  getIt.registerLazySingleton<HomeCubit>(
+  getIt.registerFactory<HomeCubit>(
     () => HomeCubit(getIt<HomeUsecase>()),
   );
 
