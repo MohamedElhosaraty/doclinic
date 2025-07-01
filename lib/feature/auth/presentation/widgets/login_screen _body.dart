@@ -29,7 +29,7 @@ class LoginScreenBody extends StatelessWidget {
                 ToastHelper().showErrorToast(context, state.message.toString());
               } else if (state is LoginSuccess) {
                 context.pushNamedAndRemoveUntil(
-                Routes.homeScreen,
+                Routes.mainScreen,
                 predicate: (route) => false,
                 );
                 DioFactory.setTokenIntoHeaderAfterLogin(

@@ -48,7 +48,7 @@ class BookDetailsScreen extends StatelessWidget {
                   text: "Done",
                   onPressed: (){
                     context.pushNamedAndRemoveUntil(
-                      Routes.homeScreen,
+                      Routes.mainScreen,
                       predicate: (route) => false,
                     );
                   },

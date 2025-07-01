@@ -12,6 +12,7 @@ import '../../feature/home/presentation/pages/book_details_screen.dart';
 import '../../feature/home/presentation/pages/details_doctor_screen.dart';
 import '../../feature/home/presentation/pages/doctor_speciality_screen.dart';
 import '../../feature/home/presentation/pages/recommendation_doctor_screen.dart';
+import '../../feature/main_screen/presentation/pages/main_screen.dart';
 import '../../feature/onboarding/pages/onboarding_screen.dart';
 import '../di/dependency_injection.dart';
 
@@ -36,6 +37,12 @@ class AppRouter {
               (_) => DoctorSpecialityScreen(
                 homeEntity: settings.arguments as HomeEntity,
               ),
+        );
+
+      case Routes.mainScreen:
+        return MaterialPageRoute(
+          builder:
+              (_) => const MainScreen(),
         );
 
       case Routes.recommendationDoctorScreen:

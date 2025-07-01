@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../generated/assets.dart';
 import '../theming/app_colors.dart';
 import '../theming/app_text_styles.dart';
 
@@ -19,39 +19,45 @@ class MyBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(top: 10.h),
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.rect, width: 2),
+        border: Border.all(color: AppColors.rect, width: 3),
         borderRadius: BorderRadius.only(topLeft: Radius.circular(20.r), topRight: Radius.circular(20.r)),
       ),
       child: BottomNavigationBar(
         iconSize: 22,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: SvgPicture.asset('Assets.svgHomeIcon'),
+            icon: SvgPicture.asset(Assets.svgsHome),
             activeIcon: SvgPicture.asset(
-              'Assets.svgActiveHomeIcon,'
+              Assets.svgsHome,
+              color:  AppColors.primaryColor,
             ),
-            label: 'Home',
+            label: ""
           ),
           BottomNavigationBarItem(
-            activeIcon: SvgPicture.asset('Assets.svgActiveCartIcon'),
-            icon: SvgPicture.asset('Assets.svgCartIcon'),
-            label: 'Cart',
+            activeIcon: SvgPicture.asset(Assets.svgsCalendar,
+              color:  AppColors.primaryColor,
+            ),
+            icon: SvgPicture.asset(Assets.svgsCalendar,),
+            label: "",
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset('Assets.svgFavouriteIcon'),
-            activeIcon: SvgPicture.asset('Assets.svgActiveFavouriteIcon'),
-            label: 'Favorites',
-          ),
-          BottomNavigationBarItem(
-            icon:  SvgPicture.asset('Assets.svgMenuIcon'),
-            label: "Menu",
+            icon: CircleAvatar(
+              radius: 16,
+              backgroundColor: AppColors.grey300,
+              child: Icon(Icons.person, color: AppColors.dartBlue),
+            ),
+            activeIcon: CircleAvatar(
+              radius: 16,
+              backgroundColor: AppColors.grey300,
+              child: Icon(Icons.person, color: AppColors.primaryColor),
+            ),
+            label: "",
           ),
         ],
-        selectedItemColor: AppColors.primaryColor,
-        unselectedItemColor: AppColors.grayScale,
-        selectedLabelStyle: AppTextStyles.poppins12Medium(context),
-        unselectedLabelStyle: AppTextStyles.poppins12Medium(context),
+        selectedLabelStyle: AppTextStyles.font12Medium(context),
+        unselectedLabelStyle: AppTextStyles.font12Medium(context),
         currentIndex: selectedIndex,
         onTap: onItemTapped,
         backgroundColor: AppColors.transparent,

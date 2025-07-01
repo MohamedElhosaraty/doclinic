@@ -49,7 +49,7 @@ class SignUpScreenBody extends StatelessWidget {
                             context, state.error.toString());
                       } else if (state is SignUpSuccess) {
                         context.pushNamedAndRemoveUntil(
-                        Routes.homeScreen,
+                        Routes.mainScreen,
                         predicate: (route) => false,
                         );
                         DioFactory.setTokenIntoHeaderAfterLogin(

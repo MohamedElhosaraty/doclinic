@@ -28,7 +28,7 @@ class DoClinicApp extends StatelessWidget {
               scaffoldBackgroundColor: Colors.white,
             ),
             debugShowCheckedModeBanner: false,
-            initialRoute: isLoggedInUser ? Routes.homeScreen : Routes
+            initialRoute: isLoggedInUser ? Routes.mainScreen : Routes
                 .onBoardingScreen,
             onGenerateRoute: AppRouter.generateRoute,
           ),
