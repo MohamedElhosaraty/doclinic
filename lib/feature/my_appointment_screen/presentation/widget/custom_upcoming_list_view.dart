@@ -6,14 +6,12 @@ class CustomUpcomingListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        physics: const BouncingScrollPhysics(),
-        itemCount: 5,
-        itemBuilder: (context, index) {
-          return const CustomUpcomingItem();
-        },
-      ),
+    return ListView.builder(
+      physics: const BouncingScrollPhysics(),
+      itemCount: 5,
+      itemBuilder: (context, index) {
+        return const CustomUpcomingItem();
+      },
     );
   }
 }

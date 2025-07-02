@@ -1,4 +1,5 @@
 import 'package:doclinic/feature/my_appointment_screen/presentation/widget/appointment_app_bar.dart';
+import 'package:doclinic/feature/my_appointment_screen/presentation/widget/custom_completed_and_cancelled_list_view.dart';
 import 'package:doclinic/feature/my_appointment_screen/presentation/widget/custom_upcoming_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,8 +40,10 @@ class MyAppointmentScreen extends StatelessWidget {
                   child:  TabBarView(
                     children: [
                       const CustomUpcomingListView(),
-                      Center(child: Text('Completed')),
-                      Center(child: Text('Cancelled')),
+                      const CustomCompletedAndCancelledListView(),
+                      const CustomCompletedAndCancelledListView(
+                        isCancelled: true,
+                      ),
                     ],
                   ),
                 ),

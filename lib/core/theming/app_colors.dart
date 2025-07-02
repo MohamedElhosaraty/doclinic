@@ -17,6 +17,7 @@ class AppColors {
   static const Color fillGreen = Color(0xFF22C55E);
   static const Color moreLightBlue = Color(0xFFEAF2FF);
   static const Color black = Color(0xFF212121);
+  static const Color red = Color(0xFFFF4C5E);
 
 
   static const Color lightBlue700 = Color(0xFFB2CCFF);

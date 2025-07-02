@@ -1,0 +1,125 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shimmer/shimmer.dart';
+
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/app_text_styles.dart';
+
+class CustomCompletedAndCancelledItem extends StatelessWidget {
+  const CustomCompletedAndCancelledItem({super.key, this.isCancelled = false});
+
+  final bool isCancelled ;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12.0),
+        color: AppColors.moreLighterGrey,
+      ),
+      padding: EdgeInsets.only(top: 16.h, left: 16.w, right: 16.w, bottom: 21.h),
+      margin: EdgeInsets.symmetric(vertical: 12.h),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            isCancelled ? "Appointment cancelled" : "Appointment done",
+            style: AppTextStyles.font12Regular(context).copyWith(
+                color:isCancelled ? AppColors.red : AppColors.fillGreen),
+          ),
+          8.verticalSpace,
+          Text(
+            "{doctorList.degree} | {doctorList.phone}",
+            style: AppTextStyles.font12Medium(
+              context,
+            ).copyWith(color: AppColors.grey),
+          ),
+          12.verticalSpace,
+          Divider(color: AppColors.lightGrey, thickness: 1),
+          14.verticalSpace,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: AppColors.grey300,
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                child: CachedNetworkImage(
+                  imageUrl: "doctorList.image",
+                  errorWidget:
+                      (context, url, error) => Image.network(
+                    "https://img.freepik.com/premium-vector/medical-mastery-vectors-doctor-artistic-visuals-doctor-illustrations-precision-medical-graphics_772298-37437.jpg",
+                    fit: BoxFit.contain,
+                    width: 75.w,
+                    height: 75.h,
+                  ),
+
+                  progressIndicatorBuilder: (context, url, downloadProgress) {
+                    return Shimmer.fromColors(
+                      baseColor: AppColors.lightGrey,
+                      highlightColor: AppColors.background,
+                      child: Container(
+                        width: 110.w,
+                        height: 120.h,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(12.0),
+                          color: Colors.white,
+                        ),
+                      ),
+                    );
+                  },
+                  imageBuilder:
+                      (context, imageProvider) => Container(
+                    width: 110.w,
+                    height: 120.h,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      color: AppColors.moreLighterGrey,
+                      borderRadius: BorderRadius.circular(12.0),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              16.horizontalSpace,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "doctorList.nameDoctor",
+                      style: AppTextStyles.font18Bold(
+                        context,
+                      ).copyWith(color: AppColors.dartBlue),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    5.verticalSpace,
+                    Text(
+                      "{doctorList.degree} | {doctorList.phone}",
+                      style: AppTextStyles.font12Medium(
+                        context,
+                      ).copyWith(color: AppColors.grey),
+                    ),
+                    5.verticalSpace,
+                    Text(
+                      "doctorList.email",
+                      style: AppTextStyles.font12Medium(
+                        context,
+                      ).copyWith(color: AppColors.grey),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
