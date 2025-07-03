@@ -1,4 +1,5 @@
 import 'package:doclinic/core/widgets/custom_button.dart';
+import 'package:doclinic/feature/my_appointment/domain/entities/my_appointment_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -8,7 +9,9 @@ import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/app_text_styles.dart';
 
 class CustomUpcomingItem extends StatelessWidget {
-  const CustomUpcomingItem({super.key});
+  const CustomUpcomingItem({super.key, required this.dataEntity});
+
+  final DataEntity dataEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,7 @@ class CustomUpcomingItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12.0),
                 ),
                 child: CachedNetworkImage(
-                  imageUrl: "doctorList.image",
+                  imageUrl: dataEntity.doctor.image,
                   errorWidget:
                       (context, url, error) => Image.network(
                         "https://img.freepik.com/premium-vector/medical-mastery-vectors-doctor-artistic-visuals-doctor-illustrations-precision-medical-graphics_772298-37437.jpg",
@@ -71,22 +74,53 @@ class CustomUpcomingItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "doctorList.nameDoctor",
+                      dataEntity.doctor.nameDoctor,
                       style: AppTextStyles.font18Bold(
                         context,
                       ).copyWith(color: AppColors.dartBlue),
                       overflow: TextOverflow.ellipsis,
                     ),
                     5.verticalSpace,
-                    Text(
-                      "{doctorList.degree} | {doctorList.phone}",
-                      style: AppTextStyles.font12Medium(
-                        context,
-                      ).copyWith(color: AppColors.grey),
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "Start Time : ",
+                            style: AppTextStyles.font14Medium(
+                              context,
+                            ).copyWith(color: AppColors.red),
+                          ),
+                          TextSpan(
+                            text: dataEntity.appointmentTime,
+                            style: AppTextStyles.font12Medium(
+                              context,
+                            ).copyWith(color: AppColors.grey),
+                          ),
+                        ],
+                      ),
+                    ),
+                    5.verticalSpace,
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "End Time : ",
+                            style: AppTextStyles.font14Medium(
+                              context,
+                            ).copyWith(color: AppColors.red),
+                          ),
+                          TextSpan(
+                            text: dataEntity.appointmentEndTime,
+                            style: AppTextStyles.font12Medium(
+                              context,
+                            ).copyWith(color: AppColors.grey),
+                          ),
+                        ],
+                      ),
                     ),
                     5.verticalSpace,
                     Text(
-                      "doctorList.email",
+                      dataEntity.doctor.email,
                       style: AppTextStyles.font12Medium(
                         context,
                       ).copyWith(color: AppColors.grey),

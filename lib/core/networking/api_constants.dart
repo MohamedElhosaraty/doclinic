@@ -6,5 +6,6 @@ class ApiConstants {
   static String search(String nameDoctor) => "doctor/doctor-search?name=$nameDoctor";
   static String filter(int cityId) => "doctor/doctor-filter?city=$cityId";
  static const String bookAppointment = "appointment/store";
+ static const String myAppointments = "appointment/index";
 
 }

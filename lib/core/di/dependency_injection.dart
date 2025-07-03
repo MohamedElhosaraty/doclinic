@@ -4,6 +4,9 @@ import 'package:doclinic/feature/home/data/repo/appointment_repo_impl.dart';
 import 'package:doclinic/feature/home/data/repo/filter_repo_impl.dart';
 import 'package:doclinic/feature/home/domain/repositories/appointment_repo.dart';
 import 'package:doclinic/feature/home/domain/repositories/search_repo.dart';
+import 'package:doclinic/feature/my_appointment/data/repo/my_appointment_repo_impl.dart';
+import 'package:doclinic/feature/my_appointment/domain/usecase/my_appointment_usecase.dart';
+import 'package:doclinic/feature/my_appointment/presentation/cubit/my_appointment_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../feature/auth/data/data_sources/login_data_sources.dart';
@@ -36,6 +39,9 @@ import '../../feature/home/presentation/cubit/appointment_cubit/appointment_cubi
 import '../../feature/home/presentation/cubit/filter_cubit/filter_cubit.dart';
 import '../../feature/home/presentation/cubit/home_cubit/home_cubit.dart';
 import '../../feature/home/presentation/cubit/search_cubit/search_cubit.dart';
+import '../../feature/my_appointment/data/data_sources/my_appointment_data_sources.dart';
+import '../../feature/my_appointment/data/data_sources/my_appointment_data_sources_impl.dart';
+import '../../feature/my_appointment/domain/repositories/my_appointment_repo.dart';
 import '../api/api_manager.dart';
 import '../api/dio_factory.dart';
 
@@ -72,6 +78,10 @@ Future<void> setupGetIt() async {
     () => AppointmentDataSourcesImpl(getIt<ApiManager>()),
   );
 
+  getIt.registerLazySingleton<MyAppointmentDataSources>(
+    () => MyAppointmentDataSourcesImpl(getIt<ApiManager>()),
+  );
+
   // 📚 Repositories
   getIt.registerLazySingleton<LoginRepo>(
     () => LoginRepoImpl(getIt<LoginDataSources>()),
@@ -95,6 +105,10 @@ Future<void> setupGetIt() async {
 
   getIt.registerLazySingleton<AppointmentRepo>(
     () => AppointmentRepoImpl(getIt<AppointmentDataSources>()),
+  );
+
+  getIt.registerLazySingleton<MyAppointmentRepo>(
+    () => MyAppointmentRepoImpl(getIt<MyAppointmentDataSources>()),
   );
 
   // ✅ Use Cases
@@ -122,6 +136,10 @@ Future<void> setupGetIt() async {
     () => AppointmentUsecase(getIt<AppointmentRepo>()),
   );
 
+  getIt.registerLazySingleton<MyAppointmentUseCase>(
+    () => MyAppointmentUseCase(getIt<MyAppointmentRepo>()),
+  );
+
   // 🧠 Cubits
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt<LoginUsecase>()));
   getIt.registerFactory<SignUpCubit>(() => SignUpCubit(getIt<SignUpUsecase>()));
@@ -140,5 +158,9 @@ Future<void> setupGetIt() async {
 
   getIt.registerLazySingleton<AppointmentCubit>(
     () => AppointmentCubit(getIt<AppointmentUsecase>()),
+  );
+
+  getIt.registerLazySingleton<MyAppointmentCubit>(
+    () => MyAppointmentCubit(getIt<MyAppointmentUseCase>()),
   );
 }

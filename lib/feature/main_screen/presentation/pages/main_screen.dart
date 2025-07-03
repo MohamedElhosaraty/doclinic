@@ -5,7 +5,8 @@ import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/widgets/bottom_nav_bar.dart';
 import '../../../home/presentation/cubit/home_cubit/home_cubit.dart';
 import '../../../home/presentation/pages/home_screen.dart';
-import '../../../my_appointment_screen/presentation/pages/my_appointment_screen.dart';
+import '../../../my_appointment/presentation/cubit/my_appointment_cubit.dart';
+import '../../../my_appointment/presentation/pages/my_appointment_screen.dart';
 import '../../../profile_screen/presentation/pages/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -32,8 +33,17 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<HomeCubit>()..getHomeData(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+          getIt<HomeCubit>()
+            ..getHomeData(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<MyAppointmentCubit>()..getMyAppointments(),
+        ),
+      ],
       child: Scaffold(
         body: _pages[_selectedIndex],
         bottomNavigationBar: MyBottomNavBar(
