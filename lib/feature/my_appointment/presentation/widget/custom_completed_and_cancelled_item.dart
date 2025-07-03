@@ -5,11 +5,14 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/app_text_styles.dart';
+import '../../domain/entities/my_appointment_entity.dart';
 
 class CustomCompletedAndCancelledItem extends StatelessWidget {
-  const CustomCompletedAndCancelledItem({super.key, this.isCancelled = false});
+  const CustomCompletedAndCancelledItem({super.key, this.isCancelled = false, required this.dataEntity});
 
   final bool isCancelled ;
+  final DataEntity dataEntity;
+
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +32,23 @@ class CustomCompletedAndCancelledItem extends StatelessWidget {
                 color:isCancelled ? AppColors.red : AppColors.fillGreen),
           ),
           8.verticalSpace,
-          Text(
-            "{doctorList.degree} | {doctorList.phone}",
-            style: AppTextStyles.font12Medium(
-              context,
-            ).copyWith(color: AppColors.grey),
+          Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: "Start Time : ",
+                  style: AppTextStyles.font14Medium(
+                    context,
+                  ).copyWith(color: AppColors.red),
+                ),
+                TextSpan(
+                  text: dataEntity.appointmentTime,
+                  style: AppTextStyles.font12Medium(
+                    context,
+                  ).copyWith(color: AppColors.grey),
+                ),
+              ],
+            ),
           ),
           12.verticalSpace,
           Divider(color: AppColors.lightGrey, thickness: 1),
@@ -47,7 +62,7 @@ class CustomCompletedAndCancelledItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12.0),
                 ),
                 child: CachedNetworkImage(
-                  imageUrl: "doctorList.image",
+                  imageUrl: dataEntity.doctor.image,
                   errorWidget:
                       (context, url, error) => Image.network(
                     "https://img.freepik.com/premium-vector/medical-mastery-vectors-doctor-artistic-visuals-doctor-illustrations-precision-medical-graphics_772298-37437.jpg",
@@ -93,22 +108,34 @@ class CustomCompletedAndCancelledItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "doctorList.nameDoctor",
+                      dataEntity.doctor.nameDoctor,
                       style: AppTextStyles.font18Bold(
                         context,
                       ).copyWith(color: AppColors.dartBlue),
                       overflow: TextOverflow.ellipsis,
                     ),
                     5.verticalSpace,
-                    Text(
-                      "{doctorList.degree} | {doctorList.phone}",
-                      style: AppTextStyles.font12Medium(
-                        context,
-                      ).copyWith(color: AppColors.grey),
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "End Time : ",
+                            style: AppTextStyles.font14Medium(
+                              context,
+                            ).copyWith(color: AppColors.red),
+                          ),
+                          TextSpan(
+                            text: dataEntity.appointmentEndTime,
+                            style: AppTextStyles.font12Medium(
+                              context,
+                            ).copyWith(color: AppColors.grey),
+                          ),
+                        ],
+                      ),
                     ),
                     5.verticalSpace,
                     Text(
-                      "doctorList.email",
+                      dataEntity.doctor.email,
                       style: AppTextStyles.font12Medium(
                         context,
                       ).copyWith(color: AppColors.grey),

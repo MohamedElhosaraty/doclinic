@@ -10,6 +10,8 @@ class MyAppointmentCubit extends Cubit<MyAppointmentState> {
 
   final MyAppointmentUseCase myAppointmentUseCase;
   List<DataEntity> allMyAppointments = [];
+  List<DataEntity> doneMyAppointments = [];
+  List<DataEntity> cancelMyAppointments = [];
 
   Future<void> getMyAppointments() async {
     emit(MyAppointmentLoading());
@@ -17,9 +19,39 @@ class MyAppointmentCubit extends Cubit<MyAppointmentState> {
     result.fold(
       (l) => emit(MyAppointmentError(error: l.error)),
       (r) {
-        emit(MyAppointmentSuccess());
         allMyAppointments = r.data;
+        doneMyAppointments = [];
+        cancelMyAppointments = [];
+        emit(MyAppointmentSuccess(
+          allMyAppointments: allMyAppointments,
+          doneMyAppointments: doneMyAppointments,
+          canceledMyAppointments: cancelMyAppointments ,
+        ));
       }
     );
+  }
+
+  void getDoneMyAppointments(DataEntity data) async {
+    if (!doneMyAppointments.any((item) => item.id == data.id)) {
+      doneMyAppointments.add(data);
+      allMyAppointments.removeWhere((item) => item.id == data.id);
+      emit(MyAppointmentSuccess(
+        allMyAppointments: allMyAppointments,
+        doneMyAppointments: doneMyAppointments,
+        canceledMyAppointments: cancelMyAppointments,
+      ));
+    }
+  }
+
+  void getCancelMyAppointments(DataEntity data) async {
+    if (!cancelMyAppointments.any((item) => item.id == data.id)) {
+      cancelMyAppointments.add(data);
+      allMyAppointments.removeWhere((item) => item.id == data.id);
+      emit(MyAppointmentSuccess(
+        allMyAppointments: allMyAppointments,
+        doneMyAppointments: doneMyAppointments,
+        canceledMyAppointments: cancelMyAppointments,
+      ));
+    }
   }
 }

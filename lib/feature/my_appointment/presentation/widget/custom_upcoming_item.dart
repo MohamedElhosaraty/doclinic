@@ -1,12 +1,14 @@
 import 'package:doclinic/core/widgets/custom_button.dart';
 import 'package:doclinic/feature/my_appointment/domain/entities/my_appointment_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/app_text_styles.dart';
+import '../cubit/my_appointment_cubit.dart';
 
 class CustomUpcomingItem extends StatelessWidget {
   const CustomUpcomingItem({super.key, required this.dataEntity});
@@ -138,7 +140,11 @@ class CustomUpcomingItem extends StatelessWidget {
             children: [
               Expanded(
                 child: CustomButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<MyAppointmentCubit>().getCancelMyAppointments(
+                      dataEntity,
+                    );
+                  },
                   borderRadiusColor: AppColors.primaryColor,
                   bgColor: AppColors.background,
                   text: "Cancel Appointment",
@@ -150,8 +156,12 @@ class CustomUpcomingItem extends StatelessWidget {
               16.horizontalSpace,
               Expanded(
                 child: CustomButton(
-                  onPressed: () {},
-                  text: "Done Appointment",
+                  onPressed: () {
+                    context.read<MyAppointmentCubit>().getDoneMyAppointments(
+                      dataEntity,
+                    );
+                  },
+                  text: "Complete Appointment",
                   textStyle: AppTextStyles.font14Medium(
                     context,
                   ).copyWith(color: AppColors.background),

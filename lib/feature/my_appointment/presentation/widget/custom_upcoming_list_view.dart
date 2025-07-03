@@ -11,10 +11,10 @@ class CustomUpcomingListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       physics: const BouncingScrollPhysics(),
-      itemCount: context.read<MyAppointmentCubit>().allMyAppointments.length,
+      itemCount: context.watch<MyAppointmentCubit>().allMyAppointments.length,
       itemBuilder: (context, index) {
         return CustomUpcomingItem(
-          dataEntity:  context.read<MyAppointmentCubit>().allMyAppointments[index],
+          dataEntity:  context.watch<MyAppointmentCubit>().allMyAppointments[index],
         );
       },
     );
