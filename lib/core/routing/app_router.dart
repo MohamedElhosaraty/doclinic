@@ -13,6 +13,8 @@ import '../../feature/home/presentation/pages/details_doctor_screen.dart';
 import '../../feature/home/presentation/pages/doctor_speciality_screen.dart';
 import '../../feature/home/presentation/pages/recommendation_doctor_screen.dart';
 import '../../feature/main_screen/presentation/pages/main_screen.dart';
+import '../../feature/my_appointment/presentation/cubit/my_appointment_cubit.dart';
+import '../../feature/my_appointment/presentation/pages/my_appointment_screen.dart';
 import '../../feature/onboarding/pages/onboarding_screen.dart';
 import '../di/dependency_injection.dart';
 
@@ -40,10 +42,7 @@ class AppRouter {
         );
 
       case Routes.mainScreen:
-        return MaterialPageRoute(
-          builder:
-              (_) => const MainScreen(),
-        );
+        return MaterialPageRoute(builder: (_) => const MainScreen());
 
       case Routes.recommendationDoctorScreen:
         final args = settings.arguments as Map<String, dynamic>;
@@ -67,24 +66,39 @@ class AppRouter {
         );
 
       case Routes.bookAppointmentScreen:
-        return MaterialPageRoute(builder: (_) =>  BookAppointmentScreen(
-          doctorList: settings.arguments as DoctorListEntity,
-        ));
+        return MaterialPageRoute(
+          builder:
+              (_) => BookAppointmentScreen(
+                doctorList: settings.arguments as DoctorListEntity,
+              ),
+        );
 
       case Routes.bookDetailsScreen:
         final args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
           builder:
               (_) => BlocProvider(
-            create: (context) => getIt<SearchCubit>(),
-            child: BookDetailsScreen(
-              doctorList: args['doctorList'] as DoctorListEntity,
-              selectedDate: args['selectedDate'] as DateTime,
-              selectedTime: args['selectedTime'] as String,
-            ),
-          ),
+                create: (context) => getIt<SearchCubit>(),
+                child: BookDetailsScreen(
+                  doctorList: args['doctorList'] as DoctorListEntity,
+                  selectedDate: args['selectedDate'] as DateTime,
+                  selectedTime: args['selectedTime'] as String,
+                ),
+              ),
         );
 
+      case Routes.myAppointmentScreen:
+        return MaterialPageRoute(
+          builder:
+              (_) => Material(
+                child: BlocProvider(
+                  create:
+                      (context) =>
+                          getIt<MyAppointmentCubit>()..getMyAppointments(),
+                  child: MyAppointmentScreen(),
+                ),
+              ),
+        );
     }
     return null;
   }

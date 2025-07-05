@@ -6,6 +6,7 @@ class Assets {
   static const String imagesHomeDoctorSpeciality = 'assets/images/home_doctor_speciality.png';
   static const String imagesHomeNurse = 'assets/images/home_nurse.png';
   static const String imagesOnboardingDoctor = 'assets/images/onboarding_doctor.png';
+  static const String imagesProfile = 'assets/images/profile.png';
   static const String imagesSplash = 'assets/images/splash.png';
   static const String imagesSplashAndroid = 'assets/images/splash_android.png';
   static const String svgsCalendar = 'assets/svgs/calendar.svg';
@@ -13,6 +14,7 @@ class Assets {
   static const String svgsDoctorLogoOpacity = 'assets/svgs/doctor_logo_opacity.svg';
   static const String svgsHome = 'assets/svgs/home.svg';
   static const String svgsNotification = 'assets/svgs/notification.svg';
+  static const String svgsPersonalInformation = 'assets/svgs/personal_information.svg';
   static const String svgsSearchIcon = 'assets/svgs/search_icon.svg';
   static const String svgsSort = 'assets/svgs/sort.svg';
   static const String svgsTrue = 'assets/svgs/true.svg';

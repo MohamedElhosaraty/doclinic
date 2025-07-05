@@ -162,7 +162,7 @@ class CustomUpcomingItem extends StatelessWidget {
                     );
                   },
                   text: "Complete Appointment",
-                  textStyle: AppTextStyles.font14Medium(
+                  textStyle: AppTextStyles.font12Medium(
                     context,
                   ).copyWith(color: AppColors.background),
                 ),
