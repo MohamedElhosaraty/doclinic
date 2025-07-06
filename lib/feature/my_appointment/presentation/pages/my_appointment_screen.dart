@@ -20,7 +20,7 @@ class MyAppointmentScreen extends StatelessWidget {
       length: 3,
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.only(top: 16.0,right: 16 ,left: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

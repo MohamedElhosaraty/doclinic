@@ -1,6 +1,7 @@
 import 'package:doclinic/core/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/routing/routes.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/app_text_styles.dart';
 
@@ -22,7 +23,9 @@ class CustomProfileAppBar extends StatelessWidget {
           Text(
             "Profile", style: AppTextStyles.font18SemiBold(context).copyWith(color: AppColors.background),),
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                context.pushNamed(Routes.settingScreen);
+              },
               icon: const Icon(Icons.settings_outlined,color: AppColors.background,)),
         ],
       ),

@@ -10,5 +10,7 @@ class Routes {
   static const String bookDetailsScreen = '/bookDetailsScreen';
   static const String mainScreen = '/mainScreen';
   static const String myAppointmentScreen = '/myAppointmentScreen';
+  static const String settingScreen = '/settingScreen';
+  static const String questionScreen = '/questionScreen';
 
 }

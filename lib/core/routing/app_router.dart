@@ -1,6 +1,8 @@
 import 'package:doclinic/core/routing/routes.dart';
 import 'package:doclinic/feature/auth/presentation/page/sign_up_screen.dart';
 import 'package:doclinic/feature/home/presentation/pages/home_screen.dart';
+import 'package:doclinic/feature/profile_screen/presentation/pages/question_screen.dart';
+import 'package:doclinic/feature/profile_screen/presentation/pages/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -99,6 +101,13 @@ class AppRouter {
                 ),
               ),
         );
+
+      case Routes.settingScreen:
+        return MaterialPageRoute(builder: (_) => const SettingScreen());
+
+case Routes.questionScreen:
+        return MaterialPageRoute(builder: (_) =>  QuestionScreen());
+
     }
     return null;
   }

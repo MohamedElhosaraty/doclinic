@@ -13,9 +13,15 @@ class Assets {
   static const String svgsDoctorLogo = 'assets/svgs/doctor_logo.svg';
   static const String svgsDoctorLogoOpacity = 'assets/svgs/doctor_logo_opacity.svg';
   static const String svgsHome = 'assets/svgs/home.svg';
+  static const String svgsLanguage = 'assets/svgs/language.svg';
+  static const String svgsLock = 'assets/svgs/lock.svg';
+  static const String svgsLogout = 'assets/svgs/logout.svg';
   static const String svgsNotification = 'assets/svgs/notification.svg';
+  static const String svgsNotification2 = 'assets/svgs/notification2.svg';
   static const String svgsPersonalInformation = 'assets/svgs/personal_information.svg';
+  static const String svgsQuestion = 'assets/svgs/question.svg';
   static const String svgsSearchIcon = 'assets/svgs/search_icon.svg';
+  static const String svgsSearchNormal = 'assets/svgs/search_normal.svg';
   static const String svgsSort = 'assets/svgs/sort.svg';
   static const String svgsTrue = 'assets/svgs/true.svg';
 
