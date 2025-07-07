@@ -9,6 +9,7 @@ class CustomTextField extends StatelessWidget {
     super.key,
     this.textController,
     this.labelText,
+    this.style,
     this.validator,
     this.isObscure,
     this.keyboardType,
@@ -18,6 +19,7 @@ class CustomTextField extends StatelessWidget {
 
   final TextEditingController? textController;
   final String? labelText;
+  final TextStyle? style;
   final bool? isObscure;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
@@ -30,6 +32,7 @@ class CustomTextField extends StatelessWidget {
       keyboardType: keyboardType,
       obscureText: isObscure ?? false,
       controller: textController,
+      style: style,
       decoration: InputDecoration(
         fillColor: AppColors.background,
         filled: true,

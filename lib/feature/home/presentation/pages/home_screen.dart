@@ -11,17 +11,19 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Container(
-          width: double.infinity,
-          margin: const EdgeInsets.fromLTRB(20, 16, 20, 28),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const HomeTopBar(),
-              const DoctorBlueContainer(),
-              24.verticalSpace,
-               DoctorBlocBuilder()
-            ],
+        child: SingleChildScrollView(
+          child: Container(
+            width: double.infinity,
+            margin: const EdgeInsets.fromLTRB(20, 16, 20, 28),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const HomeTopBar(),
+                const DoctorBlueContainer(),
+                24.verticalSpace,
+                 DoctorBlocBuilder()
+              ],
+            ),
           ),
         ),
       );

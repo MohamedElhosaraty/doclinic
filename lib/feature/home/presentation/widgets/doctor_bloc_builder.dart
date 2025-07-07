@@ -23,7 +23,8 @@ class _DoctorBlocBuilderState extends State<DoctorBlocBuilder> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * .7,
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           if (state is HomeSuccess) {

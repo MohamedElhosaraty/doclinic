@@ -65,8 +65,8 @@ class CustomProfileBody extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                TextButton(
-                  onPressed: () {
+                InkWell(
+                  onTap: () {
                     context.pushNamed(Routes.myAppointmentScreen);
                   },
                   child: Text(
@@ -84,33 +84,43 @@ class CustomProfileBody extends StatelessWidget {
                   ),
                 ),
 
-                Text(
-                  "Medical records",
-                  style: AppTextStyles.font12Regular(context).copyWith(
-                    color: AppColors.dartBlue,
+                InkWell(
+                  onTap: () {
+                    context.pushNamed(Routes.medicalRecordScreen);
+                    },
+                  child: Text(
+                    "Medical records",
+                    style: AppTextStyles.font12Regular(context).copyWith(
+                      color: AppColors.dartBlue,
+                    ),
                   ),
                 ),
               ],
             ),
           ),
           24.verticalSpace,
-          Row(
-            children: [
-              CircleAvatar(
-                radius: 20.r,
-                backgroundColor: AppColors.moreLightBlue,
-                child: SvgPicture.asset(
-                  Assets.svgsPersonalInformation,
+          InkWell(
+            onTap: (){
+              context.pushNamed(Routes.personalInformationScreen);
+            },
+            child: Row(
+              children: [
+                CircleAvatar(
+                  radius: 20.r,
+                  backgroundColor: AppColors.moreLightBlue,
+                  child: SvgPicture.asset(
+                    Assets.svgsPersonalInformation,
+                  ),
                 ),
-              ),
-              12.horizontalSpace,
-              Text(
-                "Personal Information",
-                style: AppTextStyles.font14Regular(context).copyWith(
-                  color: AppColors.dartBlue,
+                12.horizontalSpace,
+                Text(
+                  "Personal Information",
+                  style: AppTextStyles.font14Regular(context).copyWith(
+                    color: AppColors.dartBlue,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           5.verticalSpace,
           Divider(

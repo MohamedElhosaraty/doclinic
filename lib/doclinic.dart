@@ -7,6 +7,7 @@ import 'core/helpers/constants.dart';
 import 'core/routing/app_router.dart';
 import 'core/routing/routes.dart';
 import 'feature/home/presentation/cubit/filter_cubit/filter_cubit.dart';
+import 'feature/profile_screen/presentation/cubit/personal_information_cubit/personal_information_cubit.dart';
 
 class DoClinicApp extends StatelessWidget {
   const DoClinicApp({super.key});
@@ -17,9 +18,15 @@ class DoClinicApp extends StatelessWidget {
         designSize: const Size(375, 812),
         minTextAdapt: true,
         splitScreenMode: true,
-        child: BlocProvider(
-            create: (context) => getIt<FilterCubit>(),
-
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => getIt<FilterCubit>(),
+            ),
+            BlocProvider(
+              create: (context) => getIt<PersonalInformationCubit>()..getProfile(),
+            ),
+          ],
           child: MaterialApp(
             title: 'DoClinic',
             theme: ThemeData(

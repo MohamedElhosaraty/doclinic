@@ -7,12 +7,13 @@ import '../../../../core/theming/app_text_styles.dart';
 import '../../../../generated/assets.dart';
 
 class CustomSettingAppBar extends StatelessWidget {
-  const CustomSettingAppBar({super.key,required this.title,this.isActionButton = false, this.onPressed, this.isSearch = false});
+  const CustomSettingAppBar({super.key,required this.title,this.isActionButton = false, this.onPressed, this.isSearch = false, this.paddingLeft });
 
   final String title;
   final bool isActionButton;
   final void Function()? onPressed;
   final bool isSearch;
+  final double? paddingLeft;
 
 
   @override
@@ -41,7 +42,7 @@ class CustomSettingAppBar extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left:isActionButton ? 0 : MediaQuery.of(context).size.width * .25),
+          padding: EdgeInsets.only(left:isActionButton ? 0 : paddingLeft ?? MediaQuery.of(context).size.width * .25),
           child: Text(
             title,
             style: AppTextStyles.font18SemiBold(

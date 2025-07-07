@@ -1,6 +1,7 @@
 import 'package:doclinic/core/routing/routes.dart';
 import 'package:doclinic/feature/auth/presentation/page/sign_up_screen.dart';
 import 'package:doclinic/feature/home/presentation/pages/home_screen.dart';
+import 'package:doclinic/feature/profile_screen/presentation/pages/personal_information_screen.dart';
 import 'package:doclinic/feature/profile_screen/presentation/pages/question_screen.dart';
 import 'package:doclinic/feature/profile_screen/presentation/pages/setting_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ import '../../feature/main_screen/presentation/pages/main_screen.dart';
 import '../../feature/my_appointment/presentation/cubit/my_appointment_cubit.dart';
 import '../../feature/my_appointment/presentation/pages/my_appointment_screen.dart';
 import '../../feature/onboarding/pages/onboarding_screen.dart';
+import '../../feature/profile_screen/presentation/pages/medical_record_screen.dart';
 import '../di/dependency_injection.dart';
 
 class AppRouter {
@@ -105,9 +107,14 @@ class AppRouter {
       case Routes.settingScreen:
         return MaterialPageRoute(builder: (_) => const SettingScreen());
 
-case Routes.questionScreen:
-        return MaterialPageRoute(builder: (_) =>  QuestionScreen());
+      case Routes.questionScreen:
+        return MaterialPageRoute(builder: (_) => QuestionScreen());
 
+        case Routes.medicalRecordScreen:
+        return MaterialPageRoute(builder: (_) => const MedicalRecordScreen());
+
+        case Routes.personalInformationScreen:
+        return MaterialPageRoute(builder: (_) => const PersonalInformationScreen());
     }
     return null;
   }

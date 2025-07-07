@@ -67,7 +67,6 @@ class SortBottomSheet extends StatelessWidget {
             ),
           ),
           48.verticalSpace,
-          Spacer(),
           CustomButton(
             onPressed: (){
               context.pop();

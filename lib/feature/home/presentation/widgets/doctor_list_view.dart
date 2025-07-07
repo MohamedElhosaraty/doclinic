@@ -29,6 +29,7 @@ class DoctorListView extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               physics: const BouncingScrollPhysics(),
+              shrinkWrap: true,
               itemCount: doctorList.length,
               itemBuilder: (context, index) {
                 return InkWell(

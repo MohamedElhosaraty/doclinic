@@ -7,6 +7,12 @@ import 'package:doclinic/feature/home/domain/repositories/search_repo.dart';
 import 'package:doclinic/feature/my_appointment/data/repo/my_appointment_repo_impl.dart';
 import 'package:doclinic/feature/my_appointment/domain/usecase/my_appointment_usecase.dart';
 import 'package:doclinic/feature/my_appointment/presentation/cubit/my_appointment_cubit.dart';
+import 'package:doclinic/feature/profile_screen/data/data_sources/get_profile_data_sources_impl.dart';
+import 'package:doclinic/feature/profile_screen/data/data_sources/up_date_profile_data_sources_impl.dart';
+import 'package:doclinic/feature/profile_screen/data/repo/get_profile_repo_impl.dart';
+import 'package:doclinic/feature/profile_screen/domain/repositories/get_profile_repo.dart';
+import 'package:doclinic/feature/profile_screen/presentation/cubit/personal_information_cubit/personal_information_cubit.dart';
+import 'package:doclinic/feature/profile_screen/presentation/cubit/up_date_personal_information_cubit/up_date_personal_information_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../feature/auth/data/data_sources/login_data_sources.dart';
@@ -42,6 +48,12 @@ import '../../feature/home/presentation/cubit/search_cubit/search_cubit.dart';
 import '../../feature/my_appointment/data/data_sources/my_appointment_data_sources.dart';
 import '../../feature/my_appointment/data/data_sources/my_appointment_data_sources_impl.dart';
 import '../../feature/my_appointment/domain/repositories/my_appointment_repo.dart';
+import '../../feature/profile_screen/data/data_sources/get_profile_data_sources.dart';
+import '../../feature/profile_screen/data/data_sources/up_date_profile_data_sources.dart';
+import '../../feature/profile_screen/data/repo/up_date_profile_repo_impl.dart';
+import '../../feature/profile_screen/domain/repositories/up_date_profile_repo.dart';
+import '../../feature/profile_screen/domain/usecase/get_profile_usecase.dart';
+import '../../feature/profile_screen/domain/usecase/up_date_profile_usecase.dart';
 import '../api/api_manager.dart';
 import '../api/dio_factory.dart';
 
@@ -82,6 +94,14 @@ Future<void> setupGetIt() async {
     () => MyAppointmentDataSourcesImpl(getIt<ApiManager>()),
   );
 
+  getIt.registerLazySingleton<GetProfileDataSources>(
+    () => GetProfileDataSourcesImpl(getIt<ApiManager>()),
+  );
+
+  getIt.registerLazySingleton<UpDateProfileDataSources>(
+    () => UpDateProfileDataSourcesImpl(getIt<ApiManager>()),
+  );
+
   // 📚 Repositories
   getIt.registerLazySingleton<LoginRepo>(
     () => LoginRepoImpl(getIt<LoginDataSources>()),
@@ -109,6 +129,14 @@ Future<void> setupGetIt() async {
 
   getIt.registerLazySingleton<MyAppointmentRepo>(
     () => MyAppointmentRepoImpl(getIt<MyAppointmentDataSources>()),
+  );
+
+  getIt.registerLazySingleton<GetProfileRepo>(
+    () => GetProfileRepoImpl(getIt<GetProfileDataSources>()),
+  );
+
+  getIt.registerLazySingleton<UpDateProfileRepo>(
+    () => UpDateProfileRepoImpl(getIt<UpDateProfileDataSources>()),
   );
 
   // ✅ Use Cases
@@ -140,6 +168,14 @@ Future<void> setupGetIt() async {
     () => MyAppointmentUseCase(getIt<MyAppointmentRepo>()),
   );
 
+  getIt.registerLazySingleton<GetProfileUseCase>(
+    () => GetProfileUseCase(getIt<GetProfileRepo>()),
+  );
+
+  getIt.registerLazySingleton<UpDateProfileUseCase>(
+    () => UpDateProfileUseCase(getIt<UpDateProfileRepo>()),
+  );
+
   // 🧠 Cubits
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt<LoginUsecase>()));
   getIt.registerFactory<SignUpCubit>(() => SignUpCubit(getIt<SignUpUsecase>()));
@@ -162,5 +198,13 @@ Future<void> setupGetIt() async {
 
   getIt.registerLazySingleton<MyAppointmentCubit>(
     () => MyAppointmentCubit(getIt<MyAppointmentUseCase>()),
+  );
+
+  getIt.registerLazySingleton<PersonalInformationCubit>(
+    () => PersonalInformationCubit(getIt<GetProfileUseCase>()),
+  );
+
+  getIt.registerLazySingleton<UpDatePersonalInformationCubit>(
+    () => UpDatePersonalInformationCubit(getIt<UpDateProfileUseCase>()),
   );
 }

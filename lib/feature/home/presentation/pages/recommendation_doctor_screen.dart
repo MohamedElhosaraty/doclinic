@@ -81,9 +81,9 @@ class _RecommendationDoctorScreenState
                           builder: (_) =>
                               DraggableScrollableSheet(
                                   expand: false,
-                                  initialChildSize: 0.45,  // بداية الارتفاع (50%)
+                                  initialChildSize: 0.5,  // بداية الارتفاع (50%)
                                   minChildSize: 0.2,      // أقل ارتفاع يمكن الوصول له
-                                  maxChildSize: 0.5,      // أعلى ارتفاع يمكن الوصول له
+                                  maxChildSize: 0.6,      // أعلى ارتفاع يمكن الوصول له
                                 builder: (context, scrollController){
                                   return SortBottomSheet(
                                     cityEntity: widget.cityEntity,
